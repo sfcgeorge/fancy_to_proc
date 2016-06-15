@@ -20,6 +20,10 @@ class Symbol
   def call(*defaults)
     proc { |*args| args.shift.__send__(self, *defaults) }
   end unless respond_to?(:call)
+
+  def [](*defaults)
+    call(*defaults)
+  end unless respond_to?(:[])
 end
 
 class Proc

@@ -1,4 +1,4 @@
-# Fancy to_proc
+# 🎩 Fancy to_proc
 
 Have you ever wished Symbol#to_proc was chainable and took arguments?
 
@@ -7,7 +7,8 @@ Have you ever wished Symbol#to_proc was chainable and took arguments?
 #=> ["Banana", "Haddock!"]
 ```
 
-Well now it can!
+Well now it can! Read on to see how to use it, or even better [read my post](https://www.sfcgeorge.co.uk/posts/2015/09/21/why-ruby-symbol-to-proc-works-and-more) explaining how it works with pictures.
+
 
 ## Methods
 
@@ -33,6 +34,16 @@ Yep, pass whatever arguments you like to your symbol method, very convenient!
 ```
 
 Note the dot before the brackets, it's short for `.call()` which you can also use.
+
+
+### [] with arguments
+
+This is just an alternate syntax for the above `call` option, specifically designed to make enumerable indexing a little nicer:
+
+```ruby
+[{ thing: "banana" }, { thing: "hammock!" }].map &:[][:thing]                                                   
+#=> ["banana", "hammock!"]
+```
 
 
 ### ~ method tilde
@@ -139,7 +150,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-1. Fork it ( https://github.com/[my-github-username]/fancy_to_proc/fork )
+1. Fork it ( https://github.com/sfcgeorge/fancy_to_proc/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
