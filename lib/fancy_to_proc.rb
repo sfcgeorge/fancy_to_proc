@@ -1,4 +1,5 @@
 require "fancy_to_proc/version"
+require "rubocop/cop/fancy_to_proc/space_around_most_operators"
 
 module FancyToProc
 end

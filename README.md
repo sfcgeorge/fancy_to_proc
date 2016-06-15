@@ -115,6 +115,22 @@ Or install it yourself as:
     $ gem install fancy_to_proc
 
 
+## RuboCop
+
+RuboCop will complain if you don't put spaces around `&` so I've provided a monkeypatch (yay) to RuboCop's "SpaceAroundOperators" cop to ignore just the `&`.
+
+To use project-wide require `fancy_to_proc` at the top of your `.rubocop.yml`:
+
+```yaml
+require: fancy_to_proc
+```
+
+Or to use on the command line require it with a flag:
+
+```sh
+rubocop --require fancy_to_proc
+```
+
 ## Development
 
 Run `bin/console` for an interactive prompt that will allow you to experiment.
