@@ -33,17 +33,7 @@ Yep, pass whatever arguments you like to your symbol method, very convenient!
 #=> ["banana", "haddock!"]
 ```
 
-Note the dot before the brackets, it's short for `.call()` which you can also use.
-
-
-### [] with arguments
-
-This is just an alternate syntax for the above `call` option, specifically designed to make enumerable indexing a little nicer:
-
-```ruby
-[{ thing: "banana" }, { thing: "hammock!" }].map &:[][:thing]                                                   
-#=> ["banana", "hammock!"]
-```
+Note the dot before the brackets; it's short for `.call()` which you can also use. Unlike in Proc we can't use square brackets for a call alias `[]` as this is used by Symbol for element referencing already.
 
 
 ### ~ method tilde
