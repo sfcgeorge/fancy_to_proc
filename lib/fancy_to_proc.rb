@@ -31,3 +31,9 @@ class Proc
     proc { |*args| other.to_proc.call call(*args) }
   end unless method_defined?(:&)
 end
+
+class Array
+  def to_proc
+    proc { |args| args[*self] }
+  end unless method_defined?(:to_proc)
+end

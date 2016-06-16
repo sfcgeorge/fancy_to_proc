@@ -110,3 +110,26 @@ class TestProc < Minitest::Test
     end
   end
 end
+
+class TestArray < Minitest::Test
+  def test_it_has_to_proc_method
+    assert_respond_to [], :to_proc
+  end
+
+  def test_to_proc_returns_proc
+    assert_kind_of Proc, [].to_proc
+  end
+
+  def test_to_proc_works_on_arrays
+    assert_equal [:ab, :bb], [[:aa, :ab, :ac], [:ba, :bb, :bc]].map(&[1])
+  end
+
+  def test_to_proc_works_on_arrays_with_multiple_args
+    assert_equal [[:aa, :ab], [:ba, :bb]],
+      [[:aa, :ab, :ac], [:ba, :bb, :bc]].map(&[0, 2])
+  end
+
+  def test_to_proc_works_on_hashes
+    assert_equal [11, 22], [{ a: 11 }, { a: 22 }].map(&[:a])
+  end
+end

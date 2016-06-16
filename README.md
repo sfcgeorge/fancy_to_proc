@@ -53,6 +53,19 @@ Note, this is the unary tilde, so while it comes before it is actually just a me
 
 I'm not sure how I feel about these methods. They have their uses and they're not _too_ crazy, but they're still a bit unintuitive and weird. As such I'm calling them experimental and may remove / change them. Feedback please! Also note that if you're already defining any of the methods in this gem then they won't be clobbered.
 
+
+### [] Array to proc
+
+Invokes the square brackets element reference method on Array or Hash.
+
+```ruby
+[["banana"], ["hammock"]].map &[0] # works on Array or Hash
+[{ thing: "banana" }, { thing: "hammock" }].map &[:thing]
+
+#=> ["banana", "hammock"]
+```
+
+
 ### | pipe argument (Symbol)
 
 Pass a single argument to a symbol method, slightly shorter than the above call brackets style. Specifically designed for this kind of case:
