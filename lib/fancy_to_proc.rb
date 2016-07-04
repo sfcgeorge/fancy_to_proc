@@ -20,6 +20,10 @@ class Symbol
   def call(*defaults)
     proc { |*args| args.shift.__send__(self, *defaults) }
   end unless method_defined?(:call)
+
+  def respond_to?(method, include_private = false)
+    super unless method == :call
+  end
 end
 
 class Proc
