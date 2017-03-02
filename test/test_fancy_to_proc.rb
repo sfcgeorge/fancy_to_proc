@@ -60,8 +60,8 @@ class TestSymbol < Minitest::Test
 
   # call method
 
-  def test_it_has_call_method
-    assert_respond_to :foo, :call
+  def test_it_pretends_not_to_have_call_method_for_rails_quirk
+    refute_respond_to :foo, :call
   end
 
   def test_call_returns_proc
@@ -107,6 +107,44 @@ class TestProc < Minitest::Test
   def test_pipe_is_chainable
     assert_output "Hello, World!" do
       (method(:print).to_proc | "Hello," | " World")["!"]
+    end
+  end
+end
+
+class TestMethod < Minitest::Test
+  # ampersand method
+
+  def test_it_has_ampersand_method
+    assert_respond_to method(:print), :&
+  end
+
+  def test_ampersand_returns_proc
+    assert_kind_of Proc, method(:print) & :bar
+  end
+
+  def test_ampersand_works
+    assert_equal "hello", (method(:p)&:downcase)["Hello"]
+  end
+
+  # pipe method
+
+  def test_it_has_pipe_method
+    assert_respond_to method(:print), :|
+  end
+
+  def test_pipe_returns_proc
+    assert_kind_of Proc, method(:print) | 42
+  end
+
+  def test_pipe_works
+    assert_output "World!" do
+      (method(:print) | "World")["!"]
+    end
+  end
+
+  def test_pipe_is_chainable
+    assert_output "Hello, World!" do
+      (method(:print) | "Hello," | " World")["!"]
     end
   end
 end

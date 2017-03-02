@@ -36,6 +36,16 @@ class Proc
   end unless method_defined?(:&)
 end
 
+class Method
+  def |(other)
+    curry(2)[other]
+  end unless method_defined?(:|)
+
+  def &(other)
+    proc { |*args| other.to_proc.call call(*args) }
+  end unless method_defined?(:&)
+end
+
 class Array
   def to_proc
     proc { |args| args[*self] }

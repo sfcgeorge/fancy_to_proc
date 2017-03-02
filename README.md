@@ -14,7 +14,7 @@ Well now it can! Read on to see how to use it, or even better [read my post](htt
 
 ### & chainable ampersand
 
-The ampersand operator is added to Symbol (and Proc) so that you can chain like so:
+The ampersand operator is added to Symbol, Proc and Method so that you can chain like so:
 
 ```ruby
 ["banana", "  hammock! "].map &:strip&:capitalize
@@ -22,6 +22,15 @@ The ampersand operator is added to Symbol (and Proc) so that you can chain like 
 ```
 
 Note that above the first ampersand is built into Ruby, it's the second ampersand added by this Gem.
+
+You can also use the `method` method to get a method and use that as a proc in a chain...
+
+```ruby
+["banana", "hammock"].map &method(:p)&:upcase
+#-> "banana"
+#-> "hammock"
+#=> ["BANANA", "HADDOCK"]
+```
 
 
 ### .() call with arguments
@@ -36,6 +45,11 @@ Yep, pass whatever arguments you like to your symbol method, very convenient!
 Note the dot before the brackets; it's short for `.call()` which you can also use. Unlike in Proc we can't use square brackets for a call alias `[]` as this is used by Symbol for element referencing already.
 
 
+## Experimental!
+
+I'm not sure how I feel about these methods. They have their uses and they're not _too_ crazy, but they're still a bit unintuitive and weird. As such I'm calling them experimental and may remove / change them. Feedback please! Also note that if you're already defining any of the methods in this gem then they won't be clobbered.
+
+
 ### ~ method tilde
 
 Instead of the method being called on the yielded object, the object(s) is passed to the method. How often have you wanted to do this:
@@ -46,12 +60,7 @@ Instead of the method being called on the yielded object, the object(s) is passe
 #=> "scrunchie"
 ```
 
-Note, this is the unary tilde, so while it comes before it is actually just a method called on Symbol.
-
-
-## Experimental!
-
-I'm not sure how I feel about these methods. They have their uses and they're not _too_ crazy, but they're still a bit unintuitive and weird. As such I'm calling them experimental and may remove / change them. Feedback please! Also note that if you're already defining any of the methods in this gem then they won't be clobbered.
+Note; this is the unary tilde, so while it comes before it's just a method called on Symbol. It can only look up methods on Symbol but that includes things from Kernel like `p` and `puts`, but it's otherwise limited. Also due to operator precedence it needs wrapping in brackets if you want to chain.
 
 
 ### [] Array to proc
@@ -145,11 +154,13 @@ Or to use on the command line require it with a flag:
 rubocop --require fancy_to_proc
 ```
 
+
 ## Development
 
 Run `bin/console` for an interactive prompt that will allow you to experiment.
 
 To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release` to create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+
 
 ## Contributing
 
