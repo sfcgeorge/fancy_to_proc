@@ -18,7 +18,7 @@ The ampersand operator is added to Symbol, Proc and Method so that you can chain
 
 ```ruby
 ["banana", "  hammock! "].map &:strip&:capitalize
-#=> ["Banana", "Haddock!"]
+#=> ["Banana", "Hammock!"]
 ```
 
 Note that above the first ampersand is built into Ruby, it's the second ampersand added by this Gem.
@@ -29,7 +29,7 @@ You can also use the `method` method to get a method and use that as a proc in a
 ["banana", "hammock"].map &method(:p)&:upcase
 #-> "banana"
 #-> "hammock"
-#=> ["BANANA", "HADDOCK"]
+#=> ["BANANA", "HAMMOCK"]
 ```
 
 
