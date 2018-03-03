@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/sfcgeorge/fancy_to_proc.svg?branch=master)](https://travis-ci.org/sfcgeorge/fancy_to_proc)
+
 # 🎩 Fancy to_proc
 
 Have you ever wished Symbol#to_proc was chainable and took arguments?
